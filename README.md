@@ -1,11 +1,14 @@
-Problem Description
+**Problem Description**
+
 Injury prevention is essential in modern athletics. Animal-related sports, such as horse racing, are no different
 than human sports. Typically, movement efficiency correlates to both improved performance and injury
 prevention. We will build a model to interpret one aspect of this new data in this project. We could use the data
 to analyze jockey decision making, compare race surfaces, or determine the relative importance of drafting.
 The project will assist racing horse owners, trainers, and veterinarians in better understanding the relationship
 between equine performance and welfare. Equine welfare could improve significantly with better data analysis.
-Data Description
+
+**Data Description**
+
 The data available is described in the following excerpt from the Kaggle page:
 A wealth of data is now collected, including measures for heart rate, EKG, longitudinal movement,
 dorsal/ventral movement, medial/lateral deviation, total power and total landing vibration.
@@ -14,7 +17,9 @@ The data is stored in separate csv files before being merged into a single csv f
 ● nyra_race_table.csv - racetrack race data
 ● nyra_tracking_table.csv - tracking data
 ● nyra_2019_complete.csv - combined table of three above files
+
 nyra_start_table.csv
+
 1. track_id - 3 character id for the track the race took place at. AQU -Aqueduct, BEL -
 Belmont, SAR - Saratoga.
 2. race_date - date the race took place. YYYY-MM-DD.
@@ -29,7 +34,9 @@ identifier of the horse in the race.
 Example - 1280 would be 12.8-1.
 8. position_at_finish - An integer of the horse's finishing position. (added to the dataset
 9/8/22)
+
 nyra_race_table.csv
+
 1. track_id - 3 character id for the track the race took place at. AQU -Aqueduct, BEL -
 Belmont, SAR - Saratoga.
 2. race_date - date the race took place. YYYY-MM-DD.
@@ -51,7 +58,9 @@ MSW - Maiden Special Weight.
 9. purse - Purse in US dollars of the race passed as an money with two decimal places.
 10. post_time - Time of day the race began passed as 5 character. Example - 01220 would be
 12:20.
+
 nyra_tracking_table.csv
+
 1. track_id - 3 character id for the track the race took place at. AQU -Aqueduct, BEL -
 Belmont, SAR - Saratoga.
 2. race_date - date the race took place. YYYY-MM-DD.
@@ -64,9 +73,11 @@ identifier of the horse in the race.
 passed as an integer. From what we can tell, it's collected every 0.25 seconds.
 6. latitude - The latitude of the horse in the race passed as a float.
 7. longitude - The longitude of the horse in the race passed as a float.
+
 nyra_2019_complete.csv - This file is the combined 3 files into one table. The keys to join
 them trakus with race - track_id, race_date, race_number. To join trakus with start - track_id,
 race_date, race_number, program_number.
+
 1. track_id - char(3)
 2. race_date - date
 3. race_number - char(3)
@@ -84,7 +95,9 @@ race_date, race_number, program_number.
 15. jockey - char(50)
 16. odds - int
 17. position_at_finish - An integer of the horse's finishing position.
-Prediction type
+**
+Prediction type**
+
 On this data, two types of predictions can be made: regression and classification.
 Classification can be used to predict whether or not a jockey won a race by engineering a binary target
 based on position at finish (an integer representing the horse's finishing position). Clustering is used to
@@ -92,7 +105,9 @@ group specific horses together and perform classification to predict whether the
 which is graded from "0" to "5".
 Regression can be used to forecast a horse's odds ( Odds are the return you can expect to get if the horse
 you bet on is successful)
-Methods
+
+**Methods**
+
 Before we start building the model, we'll try to convert the categorical attributes to ordinal attributes. For
 example, the jockey name must be one-hot encoded because it represents the horse's name, and there are
 other variables that must be encoded.
@@ -114,7 +129,9 @@ We will then train various classification models to see which model provides the
 data.
 We can also use the combined data to predict the odds of a horse winning by applying a regression model
 on top of it; this would allow bookmakers to take calculated risks on their bets.
-Algorithms and Error Metrics
+
+**Algorithms and Error Metrics**
+
 For classification:
 1. SVM (Support Vector Machine)
 2. Logistic Regression
@@ -130,7 +147,9 @@ For Regression:
 Error Metrics:
 1. RMSE for regression
 2. ROC curve and F1 score for multi-class classification
-Comments and Concerns
+
+**Comments and Concerns**
+
 The Big Data Derby 2022 data has a unique structure that provides us with unique insights and
 challenges. Rather than each row representing an observation, collections of rows are distinguished by a
 'Track ID.' represent the racetrack. There are numerous intriguing preprocessing techniques for
